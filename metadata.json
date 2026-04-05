@@ -1,0 +1,5 @@
+{
+  "name": "LotaSpeak",
+  "description": "Une application de formation accélérée en langues nationales et internationales propulsée par l'IA pour un apprentissage rapide et interactif.",
+  "requestFramePermissions": ["microphone", "notifications"]
+}

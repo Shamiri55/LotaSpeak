@@ -1,0 +1,42 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "Stores user-specific data including streaks and total XP.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "The unique identifier for the user." },
+        "displayName": { "type": "string", "description": "The user's display name." },
+        "email": { "type": "string", "format": "email", "description": "The user's email address." },
+        "streak": { "type": "integer", "description": "The current daily streak count." },
+        "lastActive": { "type": "string", "format": "date-time", "description": "The last time the user was active." },
+        "totalXP": { "type": "integer", "description": "The total experience points earned." },
+        "totalLessonsCompleted": { "type": "integer", "description": "The total number of lessons completed." },
+        "badges": { "type": "array", "items": { "type": "string" }, "description": "List of earned badges." }
+      },
+      "required": ["uid", "streak", "totalXP", "totalLessonsCompleted"]
+    },
+    "DailyActivity": {
+      "title": "Daily Activity",
+      "description": "Tracks XP earned per language on a specific date.",
+      "type": "object",
+      "properties": {
+        "date": { "type": "string", "format": "date", "description": "The date of the activity (YYYY-MM-DD)." },
+        "xpFrench": { "type": "integer", "description": "XP earned in French." },
+        "xpEnglish": { "type": "integer", "description": "XP earned in English." },
+        "lessonsCompleted": { "type": "integer", "description": "Total lessons completed on this day." }
+      },
+      "required": ["date"]
+    }
+  },
+  "firestore": {
+    "/users/{uid}": {
+      "schema": "User",
+      "description": "User profile document."
+    },
+    "/users/{uid}/daily_stats/{date}": {
+      "schema": "DailyActivity",
+      "description": "Daily progress statistics for the user."
+    }
+  }
+}
